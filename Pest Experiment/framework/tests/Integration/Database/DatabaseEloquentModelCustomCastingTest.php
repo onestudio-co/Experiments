@@ -219,6 +219,7 @@ class DatabaseEloquentModelCustomCastingTest extends DatabaseTestCase
 
     public function testSettingAttributesUsingArrowClearsTheCastCache()
     {
+
         $model = new TestEloquentModelWithCustomCast;
         $model->typed_settings = ['foo' => true];
 

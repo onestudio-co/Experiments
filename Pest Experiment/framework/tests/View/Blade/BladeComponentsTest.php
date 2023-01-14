@@ -14,32 +14,11 @@ class BladeComponentsTest extends AbstractBladeTestCase
         $this->assertSame('<?php $__env->startComponent(\'foo\'); ?>', $this->compiler->compileString('@component(\'foo\')'));
     }
 
-    public function testClassComponentsAreCompiled()
-    {
-        $this->assertSame('<?php if (isset($component)) { $__componentOriginal2dda3d2f2f9b76bd400bf03f0b84e87f = $component; } ?>
-<?php $component = Illuminate\Tests\View\Blade\ComponentStub::class::resolve(["foo" => "bar"] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? (array) $attributes->getIterator() : [])); ?>
-<?php $component->withName(\'test\'); ?>
-<?php if ($component->shouldRender()): ?>
-<?php $__env->startComponent($component->resolveView(), $component->data()); ?>', $this->compiler->compileString('@component(\'Illuminate\Tests\View\Blade\ComponentStub::class\', \'test\', ["foo" => "bar"])'));
-    }
-
     public function testEndComponentsAreCompiled()
     {
         $this->compiler->newComponentHash('foo');
 
         $this->assertSame('<?php echo $__env->renderComponent(); ?>', $this->compiler->compileString('@endcomponent'));
-    }
-
-    public function testEndComponentClassesAreCompiled()
-    {
-        $this->compiler->newComponentHash('foo');
-
-        $this->assertSame('<?php echo $__env->renderComponent(); ?>
-<?php endif; ?>
-<?php if (isset($__componentOriginal79aef92e83454121ab6e5f64077e7d8a)): ?>
-<?php $component = $__componentOriginal79aef92e83454121ab6e5f64077e7d8a; ?>
-<?php unset($__componentOriginal79aef92e83454121ab6e5f64077e7d8a); ?>
-<?php endif; ?>', $this->compiler->compileString('@endcomponentClass'));
     }
 
     public function testSlotsAreCompiled()

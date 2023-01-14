@@ -1,0 +1,1 @@
+{"version":1,"defects":{"Illuminate\\Tests\\Http\\HttpResponseTest::testOnlyInputOnRedirect":5,"Illuminate\\Tests\\Http\\HttpResponseTest::testExceptInputOnRedirect":5},"times":{"Illuminate\\Tests\\Http\\HttpResponseTest::testOnlyInputOnRedirect":0.038,"Illuminate\\Tests\\Http\\HttpResponseTest::testExceptInputOnRedirect":0.048}}

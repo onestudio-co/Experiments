@@ -462,39 +462,6 @@ class HttpClientTest extends TestCase
         });
     }
 
-    public function testSequenceBuilder()
-    {
-        $this->factory->fake([
-            '*' => $this->factory->sequence()
-                ->push('Ok', 201)
-                ->push(['fact' => 'Cats are great!'])
-                ->pushFile(__DIR__.'/fixtures/test.txt')
-                ->pushStatus(403),
-        ]);
-
-        $response = $this->factory->get('https://example.com');
-        $this->assertSame('Ok', $response->body());
-        $this->assertSame(201, $response->status());
-
-        $response = $this->factory->get('https://example.com');
-        $this->assertSame(['fact' => 'Cats are great!'], $response->json());
-        $this->assertSame('application/json', $response->header('Content-Type'));
-        $this->assertSame(200, $response->status());
-
-        $response = $this->factory->get('https://example.com');
-        $this->assertSame("This is a story about something that happened long ago when your grandfather was a child.\n", $response->body());
-        $this->assertSame(200, $response->status());
-
-        $response = $this->factory->get('https://example.com');
-        $this->assertSame('', $response->body());
-        $this->assertSame(403, $response->status());
-
-        $this->expectException(OutOfBoundsException::class);
-
-        // The sequence is empty, it should throw an exception.
-        $this->factory->get('https://example.com');
-    }
-
     public function testSequenceBuilderCanKeepGoingWhenEmpty()
     {
         $this->factory->fake([

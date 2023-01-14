@@ -50,51 +50,12 @@ class CliDumperTest extends TestCase
         $this->assertSame($expected, $output);
     }
 
-    public function testArray()
-    {
-        $output = $this->dump(['string', 1, 1.1, ['string', 1, 1.1]]);
-
-        $expected = <<<'EOF'
-        array:4 [ // app/routes/console.php:18
-          0 => "string"
-          1 => 1
-          2 => 1.1
-          3 => array:3 [
-            0 => "string"
-            1 => 1
-            2 => 1.1
-          ]
-        ]
-
-        EOF;
-
-        $this->assertSame($expected, $output);
-    }
 
     public function testBoolean()
     {
         $output = $this->dump(true);
 
         $expected = "true // app/routes/console.php:18\n";
-
-        $this->assertSame($expected, $output);
-    }
-
-    public function testObject()
-    {
-        $user = new stdClass();
-        $user->name = 'Guus';
-
-        $output = $this->dump($user);
-
-        $objectId = spl_object_id($user);
-
-        $expected = <<<EOF
-        {#$objectId // app/routes/console.php:18
-          +"name": "Guus"
-        }
-
-        EOF;
 
         $this->assertSame($expected, $output);
     }

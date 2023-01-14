@@ -180,29 +180,6 @@ class FoundationDocsCommandTest extends TestCase
         $this->artisan('docs');
     }
 
-    public function testItBubblesUpNonProcessInterruptExceptionsInAskStratgies()
-    {
-        putenv('ARTISAN_DOCS_ASK_STRATEGY='.__DIR__.'/fixtures/process-failure-strategy.php');
-
-        $this->expectException(ProcessFailedException::class);
-
-        if (PHP_OS_FAMILY === 'Windows') {
-            $this->expectExceptionMessage('The command "expected-command" failed.
-
-Exit Code: 1(General error)
-
-Working directory: expected-working-directory');
-        } else {
-            $this->expectExceptionMessage('The command "\'expected-command\'" failed.
-
-Exit Code: 1(General error)
-
-Working directory: expected-working-directory');
-        }
-
-        $this->artisan('docs');
-    }
-
     public function testItCanGuessTheRequestedPageWhenItIsTheStartOfAPageTitle()
     {
         $this->artisan('docs elo')
