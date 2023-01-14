@@ -94,6 +94,7 @@
         "league/flysystem-path-prefixing": "^3.10.4",
         "league/flysystem-read-only": "^3.10",
         "league/flysystem-sftp-v3": "^3.10.3",
+        "milroyfraser/pest-plugin-gwt": "^0.0.3",
         "mockery/mockery": "^1.5.1",
         "orchestra/testbench-core": "^8.0",
         "pda/pheanstalk": "^4.0.4",
